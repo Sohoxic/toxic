@@ -2,6 +2,10 @@
 
 Welcome to `toxic` by Sohoxic, a fast and lightweight static site generator that converts markdown files into a beautifully styled dark theme website. Built with Python, `toxic` transforms your markdown content into beautifully styled websites with minimal effort.
 
+## Why Choose `toxic`?
+
+`toxic` was born from the need for a lightweight, fast, and aesthetically pleasing static site generator that prioritizes dark theme design. Its architecture and thoughtful defaults make it perfect for developers who want to focus on content rather than configuration.
+
 ## Key Features
 
 Here's what makes Toxic special:
@@ -16,9 +20,7 @@ Here's what makes Toxic special:
 
 > The best static site generator is the one that stays out of your way while making your content shine. `toxic` does exactly that, with style.
 
-## Why Choose `toxic`?
 
-`toxic` was born from the need for a lightweight, fast, and aesthetically pleasing static site generator that prioritizes dark theme design. Its architecture and thoughtful defaults make it perfect for developers who want to focus on content rather than configuration.
 
 ### Technical Foundation
 
