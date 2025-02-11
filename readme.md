@@ -142,7 +142,7 @@ git push -u origin main
 1. Create a `vercel.json`:
 ```json
 {
-  "buildCommand": "python generator.py",
+  "buildCommand": "python toxic.py",
   "outputDirectory": "dist"
 }
 ```
