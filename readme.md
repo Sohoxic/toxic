@@ -1,42 +1,28 @@
 # toxic
 
-Welcome to `toxic` by Sohoxic, a fast and lightweight static site generator that converts markdown files into a beautifully styled dark theme website. Built with Python, `toxic` transforms your markdown content into beautifully styled websites with minimal effort.
+Welcome to Toxic by [Sohoxic](https://github.com/Sohoxic/toxic), a simple and minimal static site generator which was primarily designed to help me easily document my life by keeping notes, learnings, thoughts all in one place instead of making static website for everything everytime, thus prioritising easy website building. This is the gardener of my digital garden(the initiator and the master to convert markdown files to static websites.).
 
-## Why Choose `toxic`?
+For my fellow develops who wants to transform their lives in the similar way which I did, here's toxic for you to document your life, learnings etc. 
 
-`toxic` was born from the need for a lightweight, fast, and aesthetically pleasing static site generator that prioritizes dark theme design. Its architecture and thoughtful defaults make it perfect for developers who want to focus on content rather than configuration.
+> Why Choose Toxic? 
+> If your focus is more on content rather than configuration, then toxic is for you
 
-## Key Features
+## The Philosophy Behind Toxic
 
-Here's what makes Toxic special:
+Toxic was created with three core principles in mind:
 
-* **Dark Theme First**: Carefully crafted dark color scheme that reduces eye strain 😜
-* **Lightning Fast**: Built with Python for optimal performance (supports parallel processing of md files)
-* **Smart Defaults**: Pre-configured with Roboto Mono for excellent readability.
-* **Responsive design**
-* **Quick rebuild times**
-* **Code syntax highlighting**
-* **YAML frontmatter support**
+* **Simplicity**: No unnecessary complexity or bloat. You should be painlessly able to write `.md` files without having to worry about setting up and using your ssg.
+* **Performance**: Ease of use should be the priority with faster processing and build times. We have parallel processing in place to take care of this
+* **Aesthetics**: Tokyonight theme. I love this! If you don't you can always customise, toxic has given you all the flexibility
 
-> The best static site generator is the one that stays out of your way while making your content shine. `toxic` does exactly that, with style.
+> Toxic does all of this, with style. Haha!
+
+[Get started with Toxic Today!](https://github.com/Sohoxic/toxic) 
 
 ## Prerequisites
 
 - Python 3.7 or higher
 - pip (Python package installer)
-
-## Installation
-
-1. Clone this repository or download the files:
-```bash
-git clone <your-repository-url>
-cd <project-directory>
-```
-
-2. Install required dependencies:
-```bash
-pip install -r requirements.txt
-```
 
 ## Project Structure
 
@@ -49,6 +35,33 @@ your-site/
 │   └── css/
 │       └── style.css
 └── dist/               # Generated site (output directory)
+```
+
+<!-- ## Key Features
+
+Here's what makes Toxic special:
+
+* **Dark Theme First**: Carefully crafted dark color scheme that reduces eye strain 😜
+* **Lightning Fast**: Built with Python for optimal performance (supports parallel processing of md files)
+* **Smart Defaults**: Pre-configured with Roboto Mono for excellent readability.
+* **Responsive design**
+* **Quick rebuild times**
+* **Code syntax highlighting**
+* **YAML frontmatter support** -->
+
+
+
+## Installation
+
+1. Clone this repository or download the files:
+```bash
+git clone https://github.com/Sohoxic/toxic.git
+cd toxic
+```
+
+2. Install required dependencies:
+```bash
+pip install -r requirements.txt
 ```
 
 ## Usage
@@ -79,22 +92,32 @@ python toxic.py
 
 Open `dist/your-post.html` in a web browser to see your generated page.
 
-## Customization
+## Customization Options
 
 ### Modifying the Theme
 
 The dark theme CSS is located in `assets/css/style.css`. You can modify:
-- Colors (using CSS variables at the top)
-- Typography
-- Spacing
-- Layout
+* Color schemes
+* Typography
+* Layout structure
+
 
 ### Template Customization
 
 Modify `templates/default.html` to change the HTML structure.
 
-> `toxic` gives you the power to create without getting in your way. It's the static site generator that developers have been waiting for.
 
+## Technical Details
+
+Here's a breakdown of Toxic's key components:
+
+| Component | Technology | Purpose |
+|-----------|------------|----------|
+| Parser | Python-Markdown | Content Processing |
+| Templates | Jinja2 | Layout Generation |
+| Styling | Modern CSS | Visual Presentation |
+| Configuration | YAML | Site Customization |
+| Build System | Python | Site Generation |
 
 ## Deployment
 
@@ -136,7 +159,15 @@ git push -u origin main
 2. Connect your repository to Vercel
 3. Deploy!
 
-> Remember, `toxic` is more than just a static site generator - it's a complete solution for developers who appreciate the elegance of dark themes and the power of simplicity.
+
+
+
+
+
+
+> `toxic` gives you the power to create without getting in your way. It's the static site generator that developers have been waiting for.
+
+Remember, `toxic` is more than just a static site generator - it's a complete solution for developers who appreciate the elegance of dark themes and the power of simplicity.
 
 ## Contributing
 
