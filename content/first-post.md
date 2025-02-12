@@ -7,7 +7,7 @@ template: dark-theme.html
 
 # The Static Site Generator 
 
-Welcome to Toxic by [Sohoxic](https://github.com/Sohoxic/toxic), a simple and minimal static site generator which was primarily designed to help me easily document my life by keeping notes, learnings, thoughts all in one place instead of making static website for everything everytime, thus prioritising easy website building. This is the gardener of my digital garden(the initiator and the master to convert markdown files to static websites.).
+Welcome to Toxic by [Sohoxic](https://github.com/Sohoxic/toxic), a simple, fast and lightweight static site generator which was primarily designed to help me easily document my life by keeping notes, learnings, thoughts all in one place instead of making static website for everything everytime, thus prioritising easy website building. This is the gardener of my digital garden(the initiator and the master to convert markdown files to static websites.).
 
 For my fellow develops who wants to transform their lives in the similar way which I did, here's toxic for you to document your life, learnings etc. 
 
