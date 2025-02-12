@@ -20,21 +20,6 @@ Here's what makes Toxic special:
 
 > The best static site generator is the one that stays out of your way while making your content shine. `toxic` does exactly that, with style.
 
-
-
-### Technical Foundation
-
-```python
-def generate_site():
-    """
-    Core function that powers `toxic`'s site generation
-    """
-    process_markdown()
-    apply_dark_theme()
-    optimize_assets()
-    return "Beautiful dark-themed site"
-```
-
 ## Prerequisites
 
 - Python 3.7 or higher
