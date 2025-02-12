@@ -19,8 +19,8 @@ For my fellow develops who wants to transform their lives in the similar way whi
 Toxic was created with three core principles in mind:
 
 * **Simplicity**: No unnecessary complexity or bloat. You should be painlessly able to write `.md` files without having to worry about setting up and using your ssg.
-* **Performance**: Ease of use should be the priority with faster processing and build times. We have parallel processing in place to take care of this
-* **Aesthetics**: Tokyonight theme. I love this! If you don't you can always customise, toxic has given you all the flexibility
+* **Performance**: Ease of use should be the priority with faster processing and build times. We have parallel processing in place to take care of this.
+* **Aesthetics**: Tokyonight theme. I love this! If you don't you can always customise, toxic has given you all the flexibility to do so.
 
 > Toxic does all of this, with style. Haha!
 
