@@ -1,5 +1,5 @@
 ---
-title: Introducing Toxic - A simple and minimal yet fast static site generator
+title: Introducing Toxic - A simple yet fast static site generator
 template: dark-theme.html
 ---
 
