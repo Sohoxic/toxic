@@ -104,6 +104,7 @@ Open `dist/your-post.html` in a web browser to see your generated page.
 ### Modifying the Theme
 
 The dark theme CSS is located in `assets/css/style.css`. You can modify:
+
 * Color schemes
 * Typography
 * Layout structure
