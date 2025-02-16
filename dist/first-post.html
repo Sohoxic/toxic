@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducing Toxic - A simple yet fast static site generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/dark-light-theme.css">
+</head>
+<body>
+    <div class="container">
+        <button class="theme-toggle" aria-label="Toggle theme">
+            <svg xmlns="http://www.w3.org/2000/svg" class="sun-icon" style="display: none;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+
+        <header>
+            <h1 class="site-title">Introducing Toxic - A simple yet fast static site generator</h1>
+        </header>
+        <main class="content">
+<p>Welcome to Toxic by <a href="https://github.com/Sohoxic/toxic">Sohoxic</a>, a simple, fast and lightweight static site generator which was primarily designed to help me easily document my life by keeping notes, learnings, thoughts all in one place instead of making static website for everything everytime, thus prioritising easy website building. This is the gardener of my digital garden(the initiator and the master to convert markdown files to static websites.).</p>
+<p>For my fellow develops who wants to transform their lives in the similar way which I did, here's toxic for you to document your life, learnings etc. </p>
+<blockquote>
+<p>Why Choose Toxic? 
+If your focus is more on content rather than configuration, then toxic is for you</p>
+</blockquote>
+<h2>The Philosophy Behind Toxic</h2>
+<p>Toxic was created with three core principles in mind:</p>
+<ul>
+<li><strong>Simplicity</strong>: No unnecessary complexity or bloat. You should be painlessly able to write <code>.md</code> files without having to worry about setting up and using your ssg.</li>
+<li><strong>Performance</strong>: Ease of use should be the priority with faster processing and build times. We have parallel processing in place to take care of this.</li>
+<li><strong>Aesthetics</strong>: Tokyonight theme. I love this! If you don't you can always customise, toxic has given you all the flexibility to do so.</li>
+</ul>
+<blockquote>
+<p>Toxic does all of this, with style. Haha!</p>
+</blockquote>
+<p><a href="https://github.com/Sohoxic/toxic">Get started with Toxic Today!</a> </p>
+<h2>Prerequisites</h2>
+<ul>
+<li>Python 3.7 or higher</li>
+<li>pip (Python package installer)</li>
+</ul>
+<h2>Project Structure</h2>
+<pre class="codehilite"><code>your-site/
+├── toxic.py          # The static site generator script
+├── content/             # Your markdown files go here
+├── templates/           # HTML templates
+├── assets/             # Static assets (CSS, images, etc.)
+│   └── css/
+│       └── style.css
+└── dist/               # Generated site (output directory)
+</code></pre>
+
+<!-- ## Key Features
+
+Here's what makes Toxic special:
+
+* **Dark Theme First**: Carefully crafted dark color scheme that reduces eye strain 😜
+* **Lightning Fast**: Built with Python for optimal performance (supports parallel processing of md files)
+* **Smart Defaults**: Pre-configured with Roboto Mono for excellent readability.
+* **Responsive design**
+* **Quick rebuild times**
+* **Code syntax highlighting**
+* **YAML frontmatter support** -->
+
+<h2>Installation</h2>
+<ol>
+<li>Clone this repository or download the files:</li>
+</ol>
+<pre class="codehilite"><code class="language-bash">git clone https://github.com/Sohoxic/toxic.git
+cd toxic
+</code></pre>
+
+<ol>
+<li>Install required dependencies:</li>
+</ol>
+<pre class="codehilite"><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+
+<h2>Usage</h2>
+<h3>1. Create a New Post</h3>
+<p>Create a markdown file in the <code>content</code> directory with YAML frontmatter:</p>
+<pre class="codehilite"><code class="language-markdown">---
+title: My First Post
+template: default.html
+---
+
+# Welcome to My Blog
+
+This is my first blog post.
+</code></pre>
+
+<h3>2. Build the Site</h3>
+<p>Run the generator:</p>
+<pre class="codehilite"><code class="language-bash">python toxic.py
+</code></pre>
+
+<h3>3. View Your Site</h3>
+<p>Open <code>dist/your-post.html</code> in a web browser to see your generated page.</p>
+<h2>Customization Options</h2>
+<h3>Modifying the Theme</h3>
+<p>The dark theme CSS is located in <code>assets/css/style.css</code>. You can modify:</p>
+<ul>
+<li>Color schemes</li>
+<li>Typography</li>
+<li>Layout structure</li>
+</ul>
+<h3>Template Customization</h3>
+<p>Modify <code>templates/default.html</code> to change the HTML structure.</p>
+<h2>Technical Details</h2>
+<p>Here's a breakdown of Toxic's key components:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Technology</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Parser</td>
+<td>Python-Markdown</td>
+<td>Content Processing</td>
+</tr>
+<tr>
+<td>Templates</td>
+<td>Jinja2</td>
+<td>Layout Generation</td>
+</tr>
+<tr>
+<td>Styling</td>
+<td>Modern CSS</td>
+<td>Visual Presentation</td>
+</tr>
+<tr>
+<td>Configuration</td>
+<td>YAML</td>
+<td>Site Customization</td>
+</tr>
+<tr>
+<td>Build System</td>
+<td>Python</td>
+<td>Site Generation</td>
+</tr>
+</tbody>
+</table>
+<h2>Deployment</h2>
+<h3>GitHub Pages</h3>
+<ol>
+<li>Create a new repository on GitHub</li>
+<li>Push your code:</li>
+</ol>
+<pre class="codehilite"><code class="language-bash">git init
+git add .
+git commit -m &quot;Initial commit&quot;
+git branch -M main
+git remote add origin &lt;your-github-repo-url&gt;
+git push -u origin main
+</code></pre>
+
+<ol>
+<li>Enable GitHub Pages in repository settings</li>
+<li>Set the source to the <code>dist</code> directory</li>
+</ol>
+<h3>Netlify</h3>
+<ol>
+<li>Create a <code>netlify.toml</code>:</li>
+</ol>
+<pre class="codehilite"><code class="language-toml">[build]
+  publish = &quot;dist&quot;
+  command = &quot;python generator.py&quot;
+</code></pre>
+
+<ol>
+<li>Connect your repository to Netlify</li>
+<li>Deploy!</li>
+</ol>
+<h3>Vercel</h3>
+<ol>
+<li>Create a <code>vercel.json</code>:</li>
+</ol>
+<pre class="codehilite"><code class="language-json">{
+  &quot;buildCommand&quot;: &quot;python toxic.py&quot;,
+  &quot;outputDirectory&quot;: &quot;dist&quot;
+}
+</code></pre>
+
+<ol>
+<li>Connect your repository to Vercel</li>
+<li>Deploy!</li>
+</ol>
+        </main>
+        <footer>
+            <p>&copy; 2025 <a href="https://sarkarsoham.com">Soham Sarkar</a> | Built with ❤️ by <a href="https://github.com/Sohoxic/toxic">toxic!</a> 🧪</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.querySelector('.theme-toggle');
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
+            
+            // Set initial theme to dark
+            document.documentElement.setAttribute('data-theme', 'dark');
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
+
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                
+                if (newTheme === 'dark') {
+                    sunIcon.style.display = 'block';
+                    moonIcon.style.display = 'none';
+                } else {
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
