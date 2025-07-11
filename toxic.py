@@ -8,6 +8,8 @@ from functools import partial
 import yaml
 from jinja2 import Environment, FileSystemLoader
 import logging
+import json
+import re
 
 class StaticSiteGenerator:
     def __init__(self, content_dir="content", output_dir="dist", template_dir="templates"):
@@ -18,6 +20,9 @@ class StaticSiteGenerator:
         self.content_dir = Path(content_dir)
         self.output_dir = Path(output_dir)
         self.template_dir = Path(template_dir)
+        
+        # Initialize search index
+        self.search_index = []
         
         # Create required directories
         self._setup_directories()
@@ -68,6 +73,11 @@ class StaticSiteGenerator:
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <title>{{ title }}</title>
+                        <style>
+                            em, i {
+                                color: orange;
+                            }
+                        </style>
                     </head>
                     <body>
                         <header>
@@ -77,7 +87,7 @@ class StaticSiteGenerator:
                             {{ content | safe }}
                         </main>
                         <footer>
-                            <p>&copy; 2024 Your Site</p>
+                            <p>&copy; 2025 <a href="https://sarkarsoham.com">Soham Sarkar</a> | Built with ❤️ by <a href="https://github.com/Sohoxic/toxic">toxic!</a> 🧪</p>
                         </footer>
                     </body>
                     </html>
@@ -137,6 +147,9 @@ class StaticSiteGenerator:
             # Write output
             output_path.write_text(output, encoding='utf-8')
             
+            # Add to search index
+            self._add_to_search_index(file_path, frontmatter, html_content, output_path)
+            
             self.logger.info(f"Successfully generated {output_path}")
             return True
         except Exception as e:
@@ -167,6 +180,9 @@ class StaticSiteGenerator:
         # Process files in parallel
         with ThreadPoolExecutor() as executor:
             results = list(executor.map(self.process_file, md_files))
+        
+        # Generate search index
+        self.generate_search_index()
         
         # Copy assets
         self.copy_assets()
@@ -200,6 +216,73 @@ This is a sample page generated automatically. You can:
         sample_file = self.content_dir / 'index.md'
         sample_file.write_text(sample_content)
         self.logger.info(f"Created sample content at {sample_file}")
+
+    def _add_to_search_index(self, file_path, frontmatter, html_content, output_path):
+        """Add page to search index."""
+        try:
+            # Extract plain text from HTML
+            text_content = self._extract_text_from_html(html_content)
+            
+            # Create relative URL
+            rel_output_path = output_path.relative_to(self.output_dir)
+            url = str(rel_output_path).replace('\\', '/')
+            
+            # Handle date serialization
+            date_value = frontmatter.get('date', '')
+            if hasattr(date_value, 'isoformat'):
+                date_value = date_value.isoformat()
+            elif date_value:
+                date_value = str(date_value)
+            
+            # Add to search index
+            search_entry = {
+                'title': frontmatter.get('title', file_path.stem),
+                'url': url,
+                'content': text_content,
+                'excerpt': self._create_excerpt(text_content),
+                'tags': frontmatter.get('tags', []),
+                'date': date_value,
+            }
+            
+            self.search_index.append(search_entry)
+            
+        except Exception as e:
+            self.logger.error(f"Error adding {file_path} to search index: {str(e)}")
+            raise
+
+    def _extract_text_from_html(self, html_content):
+        """Extract plain text from HTML content."""
+        # Remove HTML tags
+        clean_text = re.sub(r'<[^>]+>', ' ', html_content)
+        # Clean up whitespace
+        clean_text = re.sub(r'\s+', ' ', clean_text).strip()
+        return clean_text
+
+    def _create_excerpt(self, text, max_length=200):
+        """Create an excerpt from text content."""
+        if len(text) <= max_length:
+            return text
+        
+        # Find the last complete word within the limit
+        excerpt = text[:max_length]
+        last_space = excerpt.rfind(' ')
+        if last_space != -1:
+            excerpt = excerpt[:last_space]
+        
+        return excerpt + '...'
+
+    def generate_search_index(self):
+        """Generate search index JSON file."""
+        try:
+            search_index_path = self.output_dir / 'search-index.json'
+            with open(search_index_path, 'w', encoding='utf-8') as f:
+                json.dump(self.search_index, f, ensure_ascii=False, indent=2)
+            
+            self.logger.info(f"Generated search index with {len(self.search_index)} entries")
+            
+        except Exception as e:
+            self.logger.error(f"Error generating search index: {str(e)}")
+            raise
 
 if __name__ == '__main__':
     generator = StaticSiteGenerator()

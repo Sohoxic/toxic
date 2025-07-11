@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title | default('Search') }}</title>
+    <link rel="stylesheet" href="/assets/css/search.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            color: #6c757d;
+            font-size: 18px;
+        }
+        
+        .search-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a202c;
+                color: #e2e8f0;
+            }
+            
+            .page-header h1 {
+                color: #e2e8f0;
+            }
+            
+            .search-section {
+                background-color: #2d3748;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            }
+            
+            .back-link {
+                color: #63b3ed;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>{{ title | default('Search') }}</h1>
+        <p>{{ description | default('Find what you\'re looking for') }}</p>
+    </div>
+    
+    <div class="search-section">
+        <div class="search-container" id="search-container">
+            <input 
+                type="text" 
+                id="search-input" 
+                class="search-input" 
+                placeholder="Search articles, pages, and content..."
+                autocomplete="off"
+            >
+            <div id="search-results" class="search-results"></div>
+        </div>
+    </div>
+    
+    <div class="content">
+        {{ content | safe }}
+    </div>
+    
+    <a href="/" class="back-link">← Back to Home</a>
+    
+    <footer>
+        <p>&copy; 2025 <a href="https://sarkarsoham.com">Soham Sarkar</a> | Built with ❤️ by <a href="https://github.com/Sohoxic/toxic">toxic!</a> 🧪</p>
+    </footer>
+    
+    <script src="/assets/search.js"></script>
+</body>
+</html> 

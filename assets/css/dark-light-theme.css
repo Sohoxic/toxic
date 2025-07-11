@@ -77,48 +77,11 @@ body {
   max-width: 800px;
   margin: 2rem auto;
   padding: 2rem;
-  position: relative;
   background-color: var(--surface);
   border-radius: 16px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* Theme toggle button */
-.theme-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: var(--surface);
-  border: 1px solid var(--divider);
-  color: var(--accent);
-  padding: 0.5rem;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  width: 40px;
-  height: 40px;
-  z-index: 1000;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.theme-toggle:hover {
-  background: var(--hover);
-  transform: scale(1.1);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-.theme-toggle svg {
-  width: 20px;
-  height: 20px;
-  stroke: var(--accent);
-  stroke-width: 2;
-  transition: all 0.3s ease;
-}
-
-/* Rest of your CSS remains the same */
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
@@ -240,12 +203,5 @@ footer p a {
 
   h3 {
       font-size: 1.75rem;
-  }
-
-  .theme-toggle {
-      top: 0.75rem;
-      right: 0.75rem;
-      width: 35px;
-      height: 35px;
   }
 }
