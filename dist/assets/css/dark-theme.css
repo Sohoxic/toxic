@@ -30,7 +30,7 @@ body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-    font-size: 14px;
+    font-size: 15px;
     padding: 0;
     margin: 0;
     font-variant-ligatures: common-ligatures;
@@ -68,26 +68,26 @@ body {
 h1, h2, h3, h4, h5, h6 {
     color: var(--text-primary);
     font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.3;
     margin: 1.5rem 0 1rem;
 }
 
 h1 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     margin-top: 0;
 }
 
 h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 }
 
 h3 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
 }
 
 .site-title {
-    font-size: 1.6rem;
+    font-size: 1.75rem;
     font-weight: 700;
     text-align: center;
     margin: 1.5rem 0 2rem;
@@ -98,7 +98,7 @@ h3 {
 p {
     margin-bottom: 1rem;
     color: var(--text-secondary);
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.6;
 }
 
@@ -113,7 +113,7 @@ a {
     color: var(--accent);
     position: relative;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 a:hover {
@@ -141,7 +141,7 @@ ul, ol {
     margin: 1rem 0;
     padding-left: 1.5rem;
     color: var(--text-secondary);
-    font-size: 13px;
+    font-size: 14px;
 }
 
 li {
@@ -158,12 +158,12 @@ pre {
     margin: 1rem 0;
     border: 1px solid var(--border-color);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-size: 12px;
+    font-size: 13px;
 }
 
 code {
     font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-    font-size: 12px;
+    font-size: 13px;
     background-color: var(--code-bg);
     padding: 0.2em 0.4em;
     border-radius: 4px;
@@ -179,7 +179,7 @@ blockquote {
     font-style: italic;
     color: var(--text-secondary);
     border-radius: 0 8px 8px 0;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 /* Horizontal rule */
@@ -205,7 +205,7 @@ table {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 th, td {
@@ -231,7 +231,7 @@ footer {
     border-top: 2px solid var(--divider);
     text-align: center;
     color: var(--text-secondary);
-    font-size: 13px;
+    font-size: 14px;
 }
 
 footer p a {
@@ -258,7 +258,7 @@ footer p .blue-text {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     body {
-        font-size: 13px;
+        font-size: 14px;
     }
 
     .container {
@@ -266,23 +266,23 @@ footer p .blue-text {
     }
 
     .site-title {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 
     h1 {
-        font-size: 1.25rem;
+        font-size: 1.3rem;
     }
 
     h2 {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
     }
 
     h3 {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
 
     p, li, blockquote {
-        font-size: 12px;
+        font-size: 13px;
     }
 }
 

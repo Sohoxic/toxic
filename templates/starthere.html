@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/dark-theme.css">
+    <style>
+        /* StartHere-specific styling */
+        .hero-section {
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--divider);
+            background-color: var(--bg-secondary);
+        }
+        
+        .profile-picture {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 0 auto 1rem;
+            display: block;
+        }
+        
+        .hero-title {
+            font-size: 1.5rem;
+            font-weight: 410;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 400;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+        
+        .social-links a {
+            padding: 0.5rem;
+            color: var(--text-secondary);
+            transition: color 0.3s ease, transform 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+            background-color: var(--surface);
+            transform: translateY(-2px);
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0 0.5rem 0;
+            font-size: 0.875rem;
+        }
+        
+        .nav-link {
+            color: #fb923c;
+            text-decoration: underline;
+            text-decoration-color: #fb923c;
+            font-weight: 500;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #fbbf24;
+            text-decoration-color: #fbbf24;
+        }
+        
+        .nav-separator {
+            color: var(--text-secondary);
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Terminal Styling */
+        .terminal-section {
+            max-width: 900px;
+            margin: 1rem auto;
+            padding: 0 1rem;
+        }
+        
+        .terminal {
+            background-color: #0a0a0a;
+            border-radius: 12px;
+            border: 1px solid #1a1a1a;
+            padding: 2rem;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 14px;
+            cursor: text;
+        }
+        
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        .terminal-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .terminal-dot.red { background-color: #ff5f56; }
+        .terminal-dot.yellow { background-color: #ffbd2e; }
+        .terminal-dot.green { background-color: #27ca3f; }
+        
+        .terminal-title {
+            color: #666;
+            font-size: 12px;
+            margin-left: 0.5rem;
+        }
+        
+        .terminal-content {
+            color: #fff;
+            line-height: 1.5;
+        }
+        
+        .terminal-line {
+            margin: 0.25rem 0;
+        }
+        
+        .terminal-prompt {
+            color: #666;
+        }
+        
+        .terminal-prompt .user {
+            color: #27ca3f;
+        }
+        
+        .terminal-prompt .dir {
+            color: #5af78e;
+        }
+        
+        .terminal-command {
+            color: #fff;
+        }
+        
+        .terminal-output {
+            color: #ccc;
+            padding-left: 1rem;
+        }
+        
+        .terminal-error {
+            color: #ff6b6b;
+            padding-left: 1rem;
+        }
+        
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .terminal-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-family: inherit;
+            font-size: inherit;
+            flex: 1;
+            caret-color: #fff;
+        }
+        
+        .couchbase-highlight {
+            color: #ff4444;
+            font-weight: 600;
+            position: relative;
+            cursor: help;
+        }
+        
+        .couchbase-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #222;
+            color: #fff;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            margin-bottom: 0.5rem;
+            border: 1px solid #444;
+        }
+        
+        .couchbase-highlight:hover .couchbase-tooltip {
+            opacity: 1;
+        }
+        
+        .terminal-hints {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            space-y: 0.25rem;
+        }
+        
+        .terminal-hint {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-style: italic;
+        }
+        
+        .terminal-hint code {
+            color: var(--accent);
+            font-weight: 500;
+        }
+        
+        /* Timeline Styling */
+        .timeline-section {
+            margin: 4rem 0;
+            padding: 0 2rem;
+        }
+        
+        .timeline-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        .timeline-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .timeline-subtitle .proof-of-work {
+            color: var(--accent);
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 600;
+            font-style: italic;
+        }
+        
+        .timeline-item {
+            margin: 2rem 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .timeline-year {
+            font-size: 1.25rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .timeline-content {
+            margin-left: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+        
+        .timeline-content p {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+        
+        .timeline-content a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 2px;
+            transition: color 0.3s ease;
+        }
+        
+        .timeline-content a:hover {
+            color: var(--accent-hover);
+        }
+        
+        .timeline-content .external-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        /* Call-to-Action Section */
+        .cta-section {
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            margin: 0rem auto 2rem auto;
+            border: 1px solid var(--border);
+            max-width: 800px;
+        }
+        
+        .cta-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+        
+        .cta-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem 2rem 3rem;
+            border-top: 2px solid transparent;
+            background: linear-gradient(var(--surface), var(--surface)) padding-box,
+                        linear-gradient(90deg, 
+                            transparent 0%, 
+                            #7aa2f7 20%, 
+                            #bb9af7 40%, 
+                            #7aa2f7 60%, 
+                            transparent 100%) border-box;
+            background-size: 100% 100%, 300% 100%;
+            animation: movingLine 3s linear infinite;
+            text-align: center;
+        }
+        
+        @keyframes movingLine {
+            0% {
+                background-position: 0% 0%, -300% 0%;
+            }
+            100% {
+                background-position: 0% 0%, 300% 0%;
+            }
+        }
+        
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-content p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .footer-content a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-content a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+        
+        .footer-socials {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .footer-socials a {
+            padding: 0.5rem;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+            border-radius: 6px;
+        }
+        
+        .footer-socials a:hover {
+            color: var(--accent);
+            background-color: var(--surface);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 1.5rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .social-links {
+                gap: 0.75rem;
+            }
+            
+            .terminal {
+                font-size: 12px;
+                padding: 1rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <img src="{{ profile_picture | default('/assets/images/profile-picture.jpeg') }}" alt="Profile Picture" class="profile-picture">
+        <h1 class="hero-title">{{ hero_title | default("Hey, I'm Soham! 👋") }}</h1>
+        <p class="hero-subtitle">{{ hero_subtitle | default("Welcome to my corner of the internet. Here's a little about my journey so far.") }}</p>
+        
+        <!-- Social Links -->
+        <div class="social-links">
+            <a href="{{ github_url | default('https://github.com/sohoxic') }}" target="_blank" title="GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+            </a>
+            <a href="{{ twitter_url | default('https://twitter.com/sohoxic_') }}" target="_blank" title="Twitter">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                </svg>
+            </a>
+            <a href="{{ linkedin_url | default('https://www.linkedin.com/in/sarkar-soham/') }}" target="_blank" title="LinkedIn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/>
+                    <circle cx="4" cy="4" r="2"/>
+                </svg>
+            </a>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="navigation">
+            <a href="{{ blog_url | default('/thesohoxictales/') }}" class="nav-link">blog ↗</a>
+            <span class="nav-separator">-</span>
+            <a href="#timeline" class="nav-link">proof-of-work ↗</a>
+        </nav>
+    </header>
+        
+        <!-- Interactive Terminal Section -->
+        <section class="terminal-section">
+            <div class="terminal" id="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <div class="terminal-dot red"></div>
+                        <div class="terminal-dot yellow"></div>
+                        <div class="terminal-dot green"></div>
+                    </div>
+                    <div class="terminal-title">terminal</div>
+                </div>
+                
+                <div class="terminal-content">
+                    <div id="terminal-history">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">
+                                <span class="user">soham@dev</span>:<span class="dir">~</span>$
+                            </span>
+                            <span class="terminal-command">whoami</span>
+                        </div>
+                        <div class="terminal-line terminal-output">
+                            soham - CS graduate passionate about AI, systems programming, and building things that matter.
+                        </div>
+                        <div class="terminal-line terminal-output">
+                            Currently working at <span class="couchbase-highlight">Couchbase<span class="couchbase-tooltip">COUCH = Clusters Of Unreliable Commodity Hardware</span></span>, a distributed database company.
+                        </div>
+                    </div>
+                    
+                    <div class="terminal-input-line">
+                        <span class="terminal-prompt">
+                            <span class="user">soham@dev</span>:<span class="dir">~</span>$
+                        </span>
+                        <input type="text" class="terminal-input" id="terminal-input" autocomplete="off" spellcheck="false">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="terminal-hints">
+                <div class="terminal-hint">
+                    💡 Try terminal commands like <code>"cd blog"</code>, <code>"ls"</code>, <code>"help"</code>, <code>"pwd"</code>, <code>"whoami"</code>, <code>"clear"</code>
+                </div>
+                <div class="terminal-hint">
+                    ✨ Hover over <span class="couchbase-highlight">Couchbase</span> in the terminal above to see what COUCH stands for!
+                </div>
+            </div>
+        </section>
+        
+        <!-- Timeline Section -->
+        <main class="timeline-section" id="timeline">
+            <h2 class="timeline-title">{{ timeline_title | default("What I've Been Up To") }}</h2>
+            <p class="timeline-subtitle">
+                A quick rundown of the stuff I've done over the years - my <span class="proof-of-work">proof of work!</span>
+            </p>
+            
+            <div class="timeline-items">
+                {% for item in timeline_items %}
+                <div class="timeline-item">
+                    <h3 class="timeline-year">{{ item.year }}</h3>
+                    <div class="timeline-content">
+                        {% for achievement in item.achievements %}
+                        <p>{{ achievement | safe }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+        
+        <!-- Call-to-Action Section -->
+        <section class="cta-section">
+            <h3 class="cta-title">{{ cta_title | default("Ready to dive deeper?") }}</h3>
+            <p class="cta-subtitle">{{ cta_subtitle | default("Explore my thoughts on AI, systems, research, and everything in between.") }}</p>
+            <a href="{{ cta_link | default('/thesohoxictales/') }}" class="cta-button">
+                {{ cta_button_text | default("Read My Blog") }}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 <a href="https://sarkarsoham.com">Soham Sarkar</a> | Built with ❤️ by <a href="https://github.com/Sohoxic/toxic">toxic!</a> 🧪</p>
+                <div class="footer-socials">
+                    <a href="{{ github_url | default('https://github.com/sohoxic') }}" target="_blank" title="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                        </svg>
+                    </a>
+                    <a href="{{ twitter_url | default('https://twitter.com/sohoxic_') }}" target="_blank" title="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                        </svg>
+                    </a>
+                    <a href="{{ linkedin_url | default('https://www.linkedin.com/in/sarkar-soham/') }}" target="_blank" title="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                            <rect x="2" y="9" width="4" height="12"/>
+                            <circle cx="4" cy="4" r="2"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    
+    <script>
+        // Terminal functionality
+        const terminalInput = document.getElementById('terminal-input');
+        const terminalHistory = document.getElementById('terminal-history');
+        const terminal = document.getElementById('terminal');
+        let currentDirectory = '~';
+        
+        // Focus terminal input when clicking anywhere on terminal
+        terminal.addEventListener('click', () => {
+            terminalInput.focus();
+        });
+        
+        // Auto-focus on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            terminalInput.focus();
+        });
+        
+        // Handle terminal commands
+        terminalInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const command = terminalInput.value.trim();
+                handleCommand(command);
+                terminalInput.value = '';
+            }
+        });
+        
+        function handleCommand(command) {
+            const lowerCommand = command.toLowerCase();
+            
+            // Add command to history
+            addToHistory('command', command);
+            
+            switch (lowerCommand) {
+                case 'cd blog':
+                case 'cd thesohoxictales':
+                    addToHistory('output', 'Navigating to blog...');
+                    setTimeout(() => {
+                        window.location.href = '{{ blog_url | default("/thesohoxictales/") }}';
+                    }, 1000);
+                    break;
+                    
+                case 'cd proof-of-work':
+                case 'cd proof-of-work/':
+                    addToHistory('output', 'Navigating to proof-of-work section...');
+                    setTimeout(() => {
+                        document.getElementById('timeline').scrollIntoView({ behavior: 'smooth' });
+                    }, 1000);
+                    break;
+                    
+                case 'ls':
+                    addToHistory('output', 'blog/  proof-of-work/  contact.txt');
+                    break;
+                    
+                case 'pwd':
+                    addToHistory('output', `/home/soham${currentDirectory === '~' ? '' : currentDirectory}`);
+                    break;
+                    
+                case 'whoami':
+                    addToHistory('output', 'soham - CS graduate passionate about AI, systems programming, and building things that matter.');
+                    addToHistory('output', 'Currently working at <span class="couchbase-highlight">Couchbase<span class="couchbase-tooltip">COUCH = Clusters Of Unreliable Commodity Hardware</span></span>, a distributed database company.');
+                    break;
+                    
+                case 'help':
+                    addToHistory('output', 'Available commands: whoami, ls, pwd, cd blog, cd proof-of-work, help, clear');
+                    break;
+                    
+                case 'clear':
+                    terminalHistory.innerHTML = '';
+                    return;
+                    
+                case '':
+                    // Empty command, just show new prompt
+                    break;
+                    
+                default:
+                    addToHistory('error', `Command not found: ${command}. Type 'help' for available commands.`);
+                    break;
+            }
+        }
+        
+        function addToHistory(type, content) {
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            
+            if (type === 'command') {
+                line.innerHTML = `
+                    <span class="terminal-prompt">
+                        <span class="user">soham@dev</span>:<span class="dir">${currentDirectory}</span>$
+                    </span>
+                    <span class="terminal-command">${content}</span>
+                `;
+            } else if (type === 'error') {
+                line.innerHTML = `<span class="terminal-error">${content}</span>`;
+            } else {
+                line.innerHTML = `<span class="terminal-output">${content}</span>`;
+            }
+            
+            terminalHistory.appendChild(line);
+            
+            // Scroll to bottom
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

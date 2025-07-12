@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title | default("~/sohoxic/blog") }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        :root {
+            --bg-primary: #1a1b26;
+            --bg-secondary: #24283b;
+            --bg-tertiary: #16161e;
+            --text-primary: #c0caf5;
+            --text-secondary: #9aa5ce;
+            --accent: #7aa2f7;
+            --accent-hover: #89b4fa;
+            --divider: #3b4261;
+            --surface: #16161e;
+            --hover: #2f334d;
+            --code-bg: #1f2335;
+            --border-color: #292e42;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+        }
+        
+        .terminal-card {
+            background-color: var(--code-bg);
+            border: 1px solid var(--accent);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            transition: all 0.2s;
+        }
+        
+        .terminal-card:hover {
+            background-color: var(--hover);
+            border-color: var(--accent-hover);
+        }
+        
+        .terminal-dots {
+            display: flex;
+            gap: 0.25rem;
+        }
+        
+        .terminal-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+        
+        .terminal-dot.red { background-color: #f7768e; }
+        .terminal-dot.yellow { background-color: #e0af68; }
+        .terminal-dot.green { background-color: #9ece6a; }
+    </style>
+</head>
+<body class="min-h-screen transition-colors duration-300">
+    <!-- Header -->
+    <header class="border-b border-[var(--divider)] bg-[var(--bg-secondary)]">
+        <div class="max-w-6xl mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <a href="/" class="flex items-center gap-2 px-4 py-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors rounded-lg hover:bg-[var(--bg-primary)] border border-[var(--divider)] hover:border-[var(--accent)] font-mono">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        <span class="text-sm font-medium">cd ../</span>
+                    </a>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="terminal" class="w-8 h-8 text-[var(--accent)]"></i>
+                        <div>
+                            <h1 class="text-2xl font-bold font-mono">{{ header_title | default("~/sohoxic/blog") }}</h1>
+                            <p class="text-[var(--text-secondary)] text-sm font-mono">{{ header_subtitle | default("// thoughts on tech, life, and everything in between") }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Mini Blogs Section -->
+        {% if mini_blogs %}
+        <section class="mb-12">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="text-[var(--text-secondary)] font-mono text-sm">$</span>
+                <i data-lucide="zap" class="w-6 h-6 text-[var(--accent)]"></i>
+                <h2 class="text-xl font-bold text-[var(--text-primary)] font-mono">ls mini-blogs/</h2>
+                <span class="text-[var(--text-secondary)] text-sm font-mono">// quick thoughts, code snippets, and book notes</span>
+            </div>
+            
+            <!-- Description Card -->
+            <div class="mb-4 p-4 bg-[var(--code-bg)] rounded-lg border border-[var(--accent)]">
+                <div class="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--divider)]/30">
+                    <div class="terminal-dots">
+                        <div class="terminal-dot red"></div>
+                        <div class="terminal-dot yellow"></div>
+                        <div class="terminal-dot green"></div>
+                    </div>
+                    <div class="text-[var(--accent)] flex items-center gap-1">
+                        <span class="text-xs font-mono">README.md</span>
+                    </div>
+                </div>
+                <div class="bg-[var(--bg-primary)] p-3 rounded border border-[var(--border-color)]">
+                    <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+                        {{ mini_blogs_description | default("Mini-blogs are bite-sized content pieces - quick thoughts, code snippets, book notes, and tips. Perfect for when you want something informative but don't have time for a full article.") }}
+                    </p>
+                </div>
+            </div>
+            
+            <div class="space-y-1">
+                {% for mini_blog in mini_blogs %}
+                <a href="{{ mini_blog.path }}" class="block p-3 bg-[#0d1117] hover:bg-[var(--hover)] rounded-lg transition-all duration-200 group cursor-pointer border border-[var(--accent)] hover:border-[var(--accent-hover)]">
+                    <div class="flex items-center gap-2 font-mono text-sm">
+                        <span class="text-[var(--text-secondary)]">></span>
+                        <span class="text-[var(--accent)] font-bold">cat</span>
+                        <span class="text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors flex-1">
+                            {{ mini_blog.title | lower }}.md
+                        </span>
+                        <div class="flex items-center gap-2 text-[var(--text-secondary)] text-xs">
+                            <span class="flex items-center gap-1">
+                                <i data-lucide="calendar" class="w-3 h-3"></i>
+                                {{ mini_blog.date }}
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                {{ mini_blog.reading_time }}
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Main Blog Posts Section -->
+        {% if articles %}
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <span class="text-[var(--text-secondary)] font-mono text-sm">$</span>
+                <i data-lucide="newspaper" class="w-6 h-6 text-[var(--accent)]"></i>
+                <h2 class="text-xl font-bold text-[var(--text-primary)] font-mono">ls articles/</h2>
+                <span class="text-[var(--text-secondary)] text-sm font-mono">// in-depth posts and tutorials</span>
+            </div>
+            <div class="space-y-1">
+                {% for article in articles %}
+                <a href="{{ article.path }}" class="block p-3 bg-[#0d1117] hover:bg-[var(--hover)] rounded-lg transition-all duration-200 group cursor-pointer border border-[var(--accent)] hover:border-[var(--accent-hover)]">
+                    <div class="flex items-center gap-2 font-mono text-sm">
+                        <span class="text-[var(--text-secondary)]">></span>
+                        <span class="text-[var(--accent)] font-bold">cat</span>
+                        <span class="text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors flex-1">
+                            {{ article.title | lower }}.md
+                        </span>
+                        <div class="flex items-center gap-2 text-[var(--text-secondary)] text-xs">
+                            <span class="flex items-center gap-1">
+                                <i data-lucide="calendar" class="w-3 h-3"></i>
+                                {{ article.date }}
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                {{ article.reading_time }}
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Content Section (if this is a single page) -->
+        {% if content %}
+        <section class="prose prose-invert max-w-none">
+            {{ content | safe }}
+        </section>
+        {% endif %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 pt-8 border-t border-[var(--divider)] text-center text-[var(--text-secondary)]">
+        <div class="flex items-center justify-center gap-6 flex-wrap">
+            <div class="text-sm font-mono">
+                <span class="text-[var(--text-secondary)]">/*</span>
+                <span class="mx-2">&copy; 2025 {{ author | default("Soham Sarkar") }}</span>
+                <span class="mx-2">|</span>
+                <strong class="text-red-400">AI</strong>
+                <span class="mx-2">|</span>
+                <span>Systems</span>
+                <span class="mx-2">|</span>
+                <span>Research</span>
+                <span class="mx-2 text-[var(--text-secondary)]">*/</span>
+            </div>
+            <div class="flex items-center gap-4">
+                {% if github_url %}
+                <a href="{{ github_url }}" target="_blank" rel="noopener noreferrer" class="p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors rounded-lg hover:bg-[var(--bg-secondary)]" title="GitHub">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                </a>
+                {% endif %}
+                {% if twitter_url %}
+                <a href="{{ twitter_url }}" target="_blank" rel="noopener noreferrer" class="p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors rounded-lg hover:bg-[var(--bg-secondary)]" title="Twitter">
+                    <i data-lucide="twitter" class="w-5 h-5"></i>
+                </a>
+                {% endif %}
+                {% if linkedin_url %}
+                <a href="{{ linkedin_url }}" target="_blank" rel="noopener noreferrer" class="p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors rounded-lg hover:bg-[var(--bg-secondary)]" title="LinkedIn">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html> 
