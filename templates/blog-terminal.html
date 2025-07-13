@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title | default("~/sohoxic/blog") }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
@@ -40,22 +43,13 @@
             background-color: var(--hover);
             border-color: var(--accent-hover);
         }
-        
-        .terminal-dots {
-            display: flex;
-            gap: 0.25rem;
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 0.5rem;
+            }
         }
-        
-        .terminal-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            opacity: 0.5;
-        }
-        
-        .terminal-dot.red { background-color: #f7768e; }
-        .terminal-dot.yellow { background-color: #e0af68; }
-        .terminal-dot.green { background-color: #9ece6a; }
     </style>
 </head>
 <body class="min-h-screen transition-colors duration-300">
@@ -81,52 +75,33 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-4 py-8">
-        <!-- Mini Blogs Section -->
-        {% if mini_blogs %}
+        <!-- Quick Notes Section -->
+        {% if quick_notes %}
         <section class="mb-12">
             <div class="flex items-center gap-3 mb-6">
                 <span class="text-[var(--text-secondary)] font-mono text-sm">$</span>
                 <i data-lucide="zap" class="w-6 h-6 text-[var(--accent)]"></i>
-                <h2 class="text-xl font-bold text-[var(--text-primary)] font-mono">ls mini-blogs/</h2>
-                <span class="text-[var(--text-secondary)] text-sm font-mono">// quick thoughts, code snippets, and book notes</span>
-            </div>
-            
-            <!-- Description Card -->
-            <div class="mb-4 p-4 bg-[var(--code-bg)] rounded-lg border border-[var(--accent)]">
-                <div class="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--divider)]/30">
-                    <div class="terminal-dots">
-                        <div class="terminal-dot red"></div>
-                        <div class="terminal-dot yellow"></div>
-                        <div class="terminal-dot green"></div>
-                    </div>
-                    <div class="text-[var(--accent)] flex items-center gap-1">
-                        <span class="text-xs font-mono">README.md</span>
-                    </div>
-                </div>
-                <div class="bg-[var(--bg-primary)] p-3 rounded border border-[var(--border-color)]">
-                    <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
-                        {{ mini_blogs_description | default("Mini-blogs are bite-sized content pieces - quick thoughts, code snippets, book notes, and tips. Perfect for when you want something informative but don't have time for a full article.") }}
-                    </p>
-                </div>
+                <h2 class="text-xl font-bold text-[var(--text-primary)] font-mono">ls quick-notes/</h2>
+                <span class="text-[var(--text-secondary)] text-sm font-mono">// quick thoughts, code snippets, and learnings</span>
             </div>
             
             <div class="space-y-1">
-                {% for mini_blog in mini_blogs %}
-                <a href="{{ mini_blog.path }}" class="block p-3 bg-[#0d1117] hover:bg-[var(--hover)] rounded-lg transition-all duration-200 group cursor-pointer border border-[var(--accent)] hover:border-[var(--accent-hover)]">
+                {% for quick_note in quick_notes %}
+                <a href="{{ quick_note.path }}" class="block p-3 bg-[#0d1117] hover:bg-[var(--hover)] rounded-lg transition-all duration-200 group cursor-pointer border border-[var(--accent)] hover:border-[var(--accent-hover)]">
                     <div class="flex items-center gap-2 font-mono text-sm">
                         <span class="text-[var(--text-secondary)]">></span>
                         <span class="text-[var(--accent)] font-bold">cat</span>
                         <span class="text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors flex-1">
-                            {{ mini_blog.title | lower }}.md
+                            {{ quick_note.title | lower }}.md
                         </span>
                         <div class="flex items-center gap-2 text-[var(--text-secondary)] text-xs">
                             <span class="flex items-center gap-1">
                                 <i data-lucide="calendar" class="w-3 h-3"></i>
-                                {{ mini_blog.date }}
+                                {{ quick_note.date }}
                             </span>
                             <span class="flex items-center gap-1">
                                 <i data-lucide="clock" class="w-3 h-3"></i>
-                                {{ mini_blog.reading_time }}
+                                {{ quick_note.reading_time }}
                             </span>
                         </div>
                     </div>

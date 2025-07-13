@@ -1,5 +1,5 @@
 ---
-title: "Soham Sarkar - AI, Systems, Research"
+title: "Soham Sarkar"
 template: starthere.html
 
 # Hero Section
@@ -23,33 +23,39 @@ timeline_subtitle: "A quick rundown of the stuff I've done over the years - my p
 timeline_items:
   - year: "2025"
     achievements:
-      - "Started building personal projects and exploring AI/ML"
-      - "Focusing on systems programming and distributed systems"
+      - ""
+      - ""
   
   - year: "2024"
     achievements:
       - "Completed Bachelor's in Computer Science"
-      - "Gained expertise in algorithms, data structures, and software engineering"
-      - "Worked on various projects involving distributed systems and databases"
+      - ""
+      - ""
   
   - year: "2023"
     achievements:
-      - "Advanced studies in computer science fundamentals"
-      - "Deepened understanding of system design and architecture"
+      - ""
+      - ""
   
   - year: "2022"
     achievements:
-      - "Deepened understanding of computer science fundamentals"
-      - "Explored various programming paradigms and languages"
+      - ""
+      - ""
   
   - year: "2021"
     achievements:
+      - "Started learning python, got really interested in Quantum physics (Thanks to <a href=\"https://staff.pes.edu/nm1396/\" class=\"external-link\">Dr. Mohana Lakshmi<svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3\"/></svg></a>)."
+      - "I wanted to write a paper inspired by Dr. Mohana Lakshmi ma'am when she talked about her academic journey."
       - "<a href=\"/journey.html\" class=\"external-link\">Started my Bachelor's in Computer Science and moved to Bengaluru <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3\"/></svg></a> (the best decision of my life, thanks to BABA.)"
   
-  - year: "2018-2020"
+  - year: "2020"
+    achievements:
+      - "Class 12 (Higher Secondary) - Science stream (Physics, Chemistry, Mathematics) - 93.6%"
+
+  - year: "2018"
     achievements:
       - "Class 10 (Matriculation) - Core subjects including Science and Mathematics - 94.6%"
-      - "Class 12 (Higher Secondary) - Science stream (Physics, Chemistry, Mathematics) - 93.6%"
+     
 
 # Call-to-Action Section
 cta_title: "Ready to dive deeper?"

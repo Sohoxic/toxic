@@ -8,6 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/dark-theme.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    
     <style>
         /* StartHere-specific styling */
         .hero-section {
@@ -289,6 +296,18 @@
             color: var(--text-primary);
         }
         
+        .timeline-content .achievement-list {
+            margin: 0;
+            padding-left: 1.5rem;
+            list-style-type: disc;
+        }
+        
+        .timeline-content .achievement-list li {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+        
         .timeline-content p {
             margin: 0.5rem 0;
             line-height: 1.6;
@@ -549,9 +568,13 @@
                 <div class="timeline-item">
                     <h3 class="timeline-year">{{ item.year }}</h3>
                     <div class="timeline-content">
+                        <ul class="achievement-list">
                         {% for achievement in item.achievements %}
-                        <p>{{ achievement | safe }}</p>
+                        {% if achievement.strip() %}
+                        <li>{{ achievement | safe }}</li>
+                        {% endif %}
                         {% endfor %}
+                        </ul>
                     </div>
                 </div>
                 {% endfor %}
