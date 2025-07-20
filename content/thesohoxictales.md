@@ -10,6 +10,10 @@ linkedin_url: "https://www.linkedin.com/in/sarkar-soham/"
 quick_notes_description: "Quick notes are bite-sized content pieces - quick thoughts, code snippets, book notes, and tips. Perfect for when you want something informative but don't have time for a full article."
 
 quick_notes:
+  - title: "Go vs JavaScript: Understanding the Concurrency Execution Models"
+    path: "/quick-notes/go-3.html"
+    date: "Jul 12, 2025"
+    reading_time: "5 min read"
   - title: "Go `if` Statement with Short Variable Declaration"
     path: "/quick-notes/go-2.html"
     date: "Jul 12, 2025"
