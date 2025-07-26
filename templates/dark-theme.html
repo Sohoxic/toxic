@@ -7,27 +7,514 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/dark-theme.css">
+    
+    <style>
+        /* Base styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #1a1b26;
+            color: #c0caf5;
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Navigation styles */
+        .nav-header {
+            background: linear-gradient(135deg, #1a1b26 0%, #24283b 100%);
+            border-bottom: 1px solid #414868;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        
+        /* Brand section above book card */
+        .brand-section {
+            max-width: 900px;
+            margin: 0 auto 1rem auto;
+            padding: 0 2rem;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Roboto Mono', monospace;
+            color: #c0caf5;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .nav-brand:hover {
+            color: #7aa2f7;
+            text-decoration: none;
+        }
+        
+        .nav-brand-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(45deg, #7aa2f7, #bb9af7);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-link {
+            color: #9aa5ce;
+            text-decoration: none;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid transparent;
+        }
+        
+        .nav-link span.underlined {
+            border-bottom: 2px solid #7aa2f7;
+        }
+        
+        .nav-link span.arrow {
+            margin-left: 0.25rem;
+            color: #7aa2f7;
+        }
+        
+        .nav-link:hover {
+            color: #c0caf5;
+            background: #1a1b26;
+            border-color: #7aa2f7;
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+        
+        .nav-link[href="/thesohoxictales/"]:hover {
+            border-color: #89b4fa;
+        }
+        
+        .nav-link.active {
+            color: #7aa2f7;
+            background: rgba(122, 162, 247, 0.15);
+            border-color: #7aa2f7;
+            box-shadow: 0 0 0 1px rgba(122, 162, 247, 0.2);
+        }
+        
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            height: 2px;
+            background: linear-gradient(90deg, #7aa2f7, #bb9af7);
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .nav-divider {
+            width: 1px;
+            height: 20px;
+            background: #414868;
+        }
+        
+        /* Mobile navigation */
+        .mobile-nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            padding: 0.5rem;
+            background: none;
+            border: 1px solid #7aa2f7;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-toggle span {
+            width: 20px;
+            height: 2px;
+            background: #7aa2f7;
+            border-radius: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .mobile-nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
+        /* Mobile navigation menu - hidden by default */
+        .mobile-nav-menu {
+            display: none !important;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+                justify-content: space-between !important;
+            }
+            
+            .nav-links {
+                display: none !important;
+            }
+            
+            .mobile-nav-toggle {
+                display: flex !important;
+            }
+            
+            .mobile-nav-menu {
+                display: none !important;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #1a1b26;
+                border-top: 1px solid #414868;
+                padding: 0;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+                z-index: 1000;
+            }
+            
+            .mobile-nav-menu.active {
+                display: block !important;
+            }
+            
+            .mobile-nav-menu a {
+                display: flex !important;
+                padding: 1rem;
+                color: #9aa5ce;
+                text-decoration: none;
+                border-bottom: 1px solid #414868;
+                transition: all 0.3s ease;
+                font-size: 1.1rem;
+                min-height: 3rem;
+                align-items: center;
+                border-radius: 0;
+            }
+            
+            .mobile-nav-menu a:hover {
+                color: #7aa2f7;
+                background: #24283b;
+            }
+            
+            .mobile-nav-menu a:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-header {
+                position: relative;
+            }
+            
+            /* Brand section - remove padding */
+            .brand-section {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            
+            /* Remove all container constraints on mobile */
+            .container {
+                padding: 0 !important;
+                margin: 0 !important;
+                max-width: none !important;
+                width: 100% !important;
+            }
+            
+            /* Remove all card styling and make content full screen */
+            .content-card {
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+                min-height: calc(100vh - 6rem) !important;
+                margin: 0 !important;
+                width: 100% !important;
+            }
+            
+            .site-title {
+                margin: 0 !important;
+                font-size: 1.5rem !important;
+                border-bottom: 1px solid #414868 !important;
+                padding: 1rem !important;
+                width: 100% !important;
+            }
+            
+            .content {
+                padding: 1rem !important;
+                margin: 0 !important;
+                width: 100% !important;
+            }
+            
+            .content p, .content h1, .content h2, .content h3, .content pre, .content blockquote {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+            
+            /* Code blocks and pre should also be full width */
+            .content pre {
+                margin: 1rem 0 !important;
+                border-radius: 0 !important;
+                width: calc(100% + 2rem) !important;
+                margin-left: -1rem !important;
+                margin-right: -1rem !important;
+                padding: 1rem !important;
+            }
+            
+            .content blockquote {
+                margin: 1rem 0 !important;
+                width: calc(100% + 2rem) !important;
+                margin-left: -1rem !important;
+                margin-right: -1rem !important;
+                padding: 1rem !important;
+                padding-left: 2rem !important;
+            }
+            
+            /* Ensure footer also takes full width */
+            .content-card footer {
+                padding: 1rem !important;
+                margin: 0 !important;
+                width: 100% !important;
+            }
+            
+            /* Ensure body has no margin/padding */
+            body {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+        }
+        
+        /* Content styling */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .content-card {
+            border: 3px solid #414868;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            min-height: calc(100vh - 8rem);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .site-title {
+            margin-bottom: 2rem;
+            color: #c0caf5;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: left;
+            border-bottom: 2px solid #414868;
+            padding-bottom: 1rem;
+        }
+        
+        .content {
+            line-height: 1.8;
+            font-size: 1rem;
+            color: #c0caf5;
+            flex: 1;
+        }
+        
+        .content h1,
+        .content h2,
+        .content h3 {
+            color: #7aa2f7;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .content h1 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #414868;
+            padding-bottom: 0.5rem;
+        }
+        
+        .content h2 {
+            font-size: 1.4rem;
+        }
+        
+        .content h3 {
+            font-size: 1.2rem;
+        }
+        
+        .content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .content blockquote {
+            border-left: 4px solid #7aa2f7;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #9aa5ce;
+        }
+        
+        .content code {
+            background: #24283b;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Roboto Mono', monospace;
+            color: #7aa2f7;
+        }
+        
+        .content pre {
+            background: #24283b;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #414868;
+        }
+        
+        .content ul,
+        .content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .content-card footer {
+            margin-top: auto;
+            padding-top: 2rem;
+            border-top: 1px solid #414868;
+            text-align: center;
+            color: #9aa5ce;
+            font-size: 0.875rem;
+        }
+        
+        .content-card footer a {
+            color: #7aa2f7;
+            text-decoration: none;
+        }
+        
+        .content-card footer a:hover {
+            color: #89b4fa;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation Header -->
+    <nav class="nav-header">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="/home/" class="nav-link">
+                    <span class="underlined">Home</span>
+                    <span class="arrow">↗</span>
+                </a>
+                <div class="nav-divider"></div>
+                <a href="/thesohoxictales/" class="nav-link">
+                    <span class="underlined">Blog</span>
+                    <span class="arrow">↗</span>
+                </a>
+            </div>
+            
+            <div class="mobile-nav-toggle" id="mobile-nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-nav-menu" id="mobile-nav-menu">
+                <a href="/home/">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9,22 9,12 15,12 15,22"/>
+                    </svg>
+                    Home
+                </a>
+                <a href="/thesohoxictales/">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                        <path d="M18 14h-8"/>
+                        <path d="M15 18h-5"/>
+                        <path d="M10 6h8"/>
+                    </svg>
+                    Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
+        <div class="content-card">
         <header>
             <h1 class="site-title">{{ title }}</h1>
         </header>
         <main class="content">
             {{ content | safe }}
         </main>
-<!--         <footer>
-            <p>&copy; 2025 Soham Sarkar | 
-                <a href="https://sarkarsoham.com">sarkarsoham.com</a> | 
-                <strong>AI</strong> | 
-                <span class="blue-text">Systems</span> | 
-                <span class="white-text">Research</span>
-            </p>
-        </footer>         -->
         <footer>
             <p>&copy; 2025 <a href="https://sarkarsoham.com">Soham Sarkar</a> | Built with ❤️ by <a href="https://github.com/Sohoxic/toxic">toxic!</a> 🧪</p>
         </footer>
     </div>
+    </div>
+    
+    <script>
+        // Mobile navigation toggle
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const mobileNavMenu = document.querySelector('.mobile-nav-menu');
+        
+        if (mobileNavToggle && mobileNavMenu) {
+            mobileNavToggle.addEventListener('click', () => {
+                mobileNavMenu.classList.toggle('active');
+                mobileNavToggle.classList.toggle('active');
+            });
+            
+            // Close mobile nav when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileNavToggle.contains(e.target) && !mobileNavMenu.contains(e.target)) {
+                    mobileNavMenu.classList.remove('active');
+                    mobileNavToggle.classList.remove('active');
+                }
+            });
+            
+            // Close mobile nav when clicking on a link
+            mobileNavMenu.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    mobileNavMenu.classList.remove('active');
+                    mobileNavToggle.classList.remove('active');
+                }
+            });
+        }
+    </script>
 </body>
 </html>

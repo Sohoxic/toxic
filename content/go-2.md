@@ -5,7 +5,6 @@ template: dark-theme.html
 
 This Go code demonstrates how to use a short variable declaration (`:=`) inside an `if` statement and how control flows through multiple conditional branches.
 
----
 
 ## ✅ Code
 

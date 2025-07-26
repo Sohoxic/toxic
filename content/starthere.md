@@ -44,8 +44,8 @@ timeline_items:
   
   - year: "2021"
     achievements:
+      - I wanted to write a paper inspired by Mohana Lakshmi ma’am, read literature on this but couldn’t continue because much more profound knowledge was required quantum physics. This was the start if me exploring the field of research.
       - "Started learning python, got really interested in Quantum physics (Thanks to <a href=\"https://staff.pes.edu/nm1396/\" class=\"external-link\">Dr. Mohana Lakshmi<svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3\"/></svg></a>)."
-      - "I wanted to write a paper inspired by Dr. Mohana Lakshmi ma'am when she talked about her academic journey."
       - "<a href=\"/journey.html\" class=\"external-link\">Started my Bachelor's in Computer Science and moved to Bengaluru <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3\"/></svg></a> (the best decision of my life, thanks to BABA.)"
   
   - year: "2020"

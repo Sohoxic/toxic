@@ -1,14 +1,14 @@
 ---
 title: "~/sohoxic/blog"
 template: blog-terminal.html
-header_title: "~/sohoxic/blog"
+header_title: "~/soham/blog"
 header_subtitle: "// thoughts on tech, life, and everything in between"
 author: "Soham Sarkar"
 github_url: "https://github.com/sohoxic"
 twitter_url: "https://twitter.com/sohoxic_"
 linkedin_url: "https://www.linkedin.com/in/sarkar-soham/"
 quick_notes_description: "Quick notes are bite-sized content pieces - quick thoughts, code snippets, book notes, and tips. Perfect for when you want something informative but don't have time for a full article."
-
+header_description: This is my place
 quick_notes:
   - title: "Go vs JavaScript: Understanding the Concurrency Execution Models"
     path: "/quick-notes/go-3.html"
