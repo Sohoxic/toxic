@@ -1,6 +1,6 @@
 ---
 title: WAIL-TD -> Database Fundamentals
-template: dark-theme.html
+template: light-theme.html
 ---
 
 

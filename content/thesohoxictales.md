@@ -1,6 +1,6 @@
 ---
 title: "~/sohoxic/blog"
-template: blog-terminal.html
+template: blog-terminal-light.html
 header_title: "~/soham/blog"
 header_subtitle: "// thoughts on tech, life, and everything in between"
 author: "Soham Sarkar"

@@ -1,6 +1,6 @@
 ---
 title: Understanding Type Inference in Go
-template: dark-theme.html
+template: light-theme.html
 ---
 
 In Go, **numbers like `1`, `2.5`, `-3` don't have a type until you use them** in a context where a type is expected.

@@ -1,6 +1,6 @@
 ---
 title: Introducing Toxic - A simple yet fast static site generator
-template: dark-light-theme.html
+template: light-theme.html
 ---
 
 # Introducing [Toxic](https://github.com/Sohoxic/toxic) 

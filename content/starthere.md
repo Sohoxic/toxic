@@ -1,6 +1,6 @@
 ---
 title: "Soham Sarkar"
-template: starthere.html
+template: starthere-light.html
 
 # Hero Section
 hero_title: "Hey, I'm Soham! 👋"

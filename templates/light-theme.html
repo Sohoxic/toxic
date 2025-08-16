@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introducing Toxic - A simple yet fast static site generator</title>
+    <title>{{ title }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -383,183 +383,10 @@
             <div class="container">
                 <div class="content-card">
                 <header>
-                    <h1 class="site-title">Introducing Toxic - A simple yet fast static site generator</h1>
+                    <h1 class="site-title">{{ title }}</h1>
                 </header>
                 <main class="content">
-                    <h1>Introducing <a href="https://github.com/Sohoxic/toxic">Toxic</a></h1>
-<h1>The Static Site Generator</h1>
-<p>Welcome to Toxic by <a href="https://github.com/Sohoxic/toxic">Sohoxic</a>, a simple, fast and lightweight static site generator which was primarily designed to help me easily document my life by keeping notes, learnings, thoughts all in one place instead of making static website for everything everytime, thus prioritising easy website building. This is the gardener of my digital garden(the initiator and the master to convert markdown files to static websites.).</p>
-<p>For my fellow develops who wants to transform their lives in the similar way which I did, here's toxic for you to document your life, learnings etc. </p>
-<blockquote>
-<p>Why Choose Toxic? 
-If your focus is more on content rather than configuration, then toxic is for you</p>
-</blockquote>
-<h2>The Philosophy Behind Toxic</h2>
-<p>Toxic was created with three core principles in mind:</p>
-<ul>
-<li><strong>Simplicity</strong>: No unnecessary complexity or bloat. You should be painlessly able to write <code>.md</code> files without having to worry about setting up and using your ssg.</li>
-<li><strong>Performance</strong>: Ease of use should be the priority with faster processing and build times. We have parallel processing in place to take care of this.</li>
-<li><strong>Aesthetics</strong>: Tokyonight theme. I love this! If you don't you can always customise, toxic has given you all the flexibility to do so.</li>
-</ul>
-<blockquote>
-<p>Toxic does all of this, with style. Haha!</p>
-</blockquote>
-<p><a href="https://github.com/Sohoxic/toxic">Get started with Toxic Today!</a> </p>
-<h2>Prerequisites</h2>
-<ul>
-<li>Python 3.7 or higher</li>
-<li>pip (Python package installer)</li>
-</ul>
-<h2>Project Structure</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">your</span><span class="o">-</span><span class="n">site</span><span class="o">/</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">toxic</span><span class="p">.</span><span class="n">py</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">site</span><span class="w"> </span><span class="n">generator</span><span class="w"> </span><span class="n">script</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">content</span><span class="o">/</span><span class="w">             </span><span class="err">#</span><span class="w"> </span><span class="n">Your</span><span class="w"> </span><span class="n">markdown</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="k">go</span><span class="w"> </span><span class="n">here</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">templates</span><span class="o">/</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="n">HTML</span><span class="w"> </span><span class="n">templates</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">assets</span><span class="o">/</span><span class="w">             </span><span class="err">#</span><span class="w"> </span><span class="k">Static</span><span class="w"> </span><span class="n">assets</span><span class="w"> </span><span class="p">(</span><span class="n">CSS</span><span class="p">,</span><span class="w"> </span><span class="n">images</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="p">.)</span>
-<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">css</span><span class="o">/</span>
-<span class="err">│</span><span class="w">       </span><span class="err">└──</span><span class="w"> </span><span class="n">style</span><span class="p">.</span><span class="n">css</span>
-<span class="err">└──</span><span class="w"> </span><span class="n">dist</span><span class="o">/</span><span class="w">               </span><span class="err">#</span><span class="w"> </span><span class="n">Generated</span><span class="w"> </span><span class="n">site</span><span class="w"> </span><span class="p">(</span><span class="k">output</span><span class="w"> </span><span class="n">directory</span><span class="p">)</span>
-</code></pre></div>
-
-<!-- ## Key Features
-
-Here's what makes Toxic special:
-
-* **Dark Theme First**: Carefully crafted dark color scheme that reduces eye strain 😜
-* **Lightning Fast**: Built with Python for optimal performance (supports parallel processing of md files)
-* **Smart Defaults**: Pre-configured with Roboto Mono for excellent readability.
-* **Responsive design**
-* **Quick rebuild times**
-* **Code syntax highlighting**
-* **YAML frontmatter support** -->
-
-<h2>Installation</h2>
-<ol>
-<li>Clone this repository or download the files:</li>
-</ol>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Sohoxic/toxic.git
-<span class="nb">cd</span><span class="w"> </span>toxic
-</code></pre></div>
-
-<ol>
-<li>Install required dependencies:</li>
-</ol>
-<div class="codehilite"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</code></pre></div>
-
-<h2>Usage</h2>
-<h3>1. Create a New Post</h3>
-<p>Create a markdown file in the <code>content</code> directory with YAML frontmatter:</p>
-<div class="codehilite"><pre><span></span><code>---
-title: My First Post
-<span class="gu">template: default.html</span>
-<span class="gu">---</span>
-
-<span class="gh"># Welcome to My Blog</span>
-
-This is my first blog post.
-</code></pre></div>
-
-<h3>2. Build the Site</h3>
-<p>Run the generator:</p>
-<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>toxic.py
-</code></pre></div>
-
-<h3>3. View Your Site</h3>
-<p>Open <code>dist/your-post.html</code> in a web browser to see your generated page.</p>
-<h2>Customization Options</h2>
-<h3>Modifying the Theme</h3>
-<p>The dark theme CSS is located in <code>assets/css/style.css</code>. You can modify:</p>
-<ul>
-<li>Color schemes</li>
-<li>Typography</li>
-<li>Layout structure</li>
-</ul>
-<h3>Template Customization</h3>
-<p>Modify <code>templates/default.html</code> to change the HTML structure.</p>
-<h2>Technical Details</h2>
-<p>Here's a breakdown of Toxic's key components:</p>
-<table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Technology</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Parser</td>
-<td>Python-Markdown</td>
-<td>Content Processing</td>
-</tr>
-<tr>
-<td>Templates</td>
-<td>Jinja2</td>
-<td>Layout Generation</td>
-</tr>
-<tr>
-<td>Styling</td>
-<td>Modern CSS</td>
-<td>Visual Presentation</td>
-</tr>
-<tr>
-<td>Configuration</td>
-<td>YAML</td>
-<td>Site Customization</td>
-</tr>
-<tr>
-<td>Build System</td>
-<td>Python</td>
-<td>Site Generation</td>
-</tr>
-</tbody>
-</table>
-<h2>Deployment</h2>
-<h3>GitHub Pages</h3>
-<ol>
-<li>Create a new repository on GitHub</li>
-<li>Push your code:</li>
-</ol>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>init
-git<span class="w"> </span>add<span class="w"> </span>.
-git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Initial commit&quot;</span>
-git<span class="w"> </span>branch<span class="w"> </span>-M<span class="w"> </span>main
-git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>&lt;your-github-repo-url&gt;
-git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
-</code></pre></div>
-
-<ol>
-<li>Enable GitHub Pages in repository settings</li>
-<li>Set the source to the <code>dist</code> directory</li>
-</ol>
-<h3>Netlify</h3>
-<ol>
-<li>Create a <code>netlify.toml</code>:</li>
-</ol>
-<div class="codehilite"><pre><span></span><code><span class="k">[build]</span>
-<span class="w">  </span><span class="n">publish</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;dist&quot;</span>
-<span class="w">  </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;python generator.py&quot;</span>
-</code></pre></div>
-
-<ol>
-<li>Connect your repository to Netlify</li>
-<li>Deploy!</li>
-</ol>
-<h3>Vercel</h3>
-<ol>
-<li>Create a <code>vercel.json</code>:</li>
-</ol>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;buildCommand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;python toxic.py&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;outputDirectory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dist&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<ol>
-<li>Connect your repository to Vercel</li>
-<li>Deploy!</li>
-</ol>
+                    {{ content | safe }}
                 </main>
                 </div>
             </div>
@@ -569,17 +396,17 @@ git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span
                 <div class="footer-content">
                     <p>&copy; 2025 <a href="https://sarkarsoham.com">Soham Sarkar</a> | Built with ❤️ by <a href="https://github.com/Sohoxic/toxic">toxic!</a> 🧪</p>
                     <div class="footer-socials">
-                        <a href="https://github.com/sohoxic" target="_blank" title="GitHub">
+                        <a href="{{ github_url | default('https://github.com/sohoxic') }}" target="_blank" title="GitHub">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                             </svg>
                         </a>
-                        <a href="https://twitter.com/sohoxic_" target="_blank" title="Twitter">
+                        <a href="{{ twitter_url | default('https://twitter.com/sohoxic_') }}" target="_blank" title="Twitter">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
                             </svg>
                         </a>
-                        <a href="https://www.linkedin.com/in/sarkar-soham/" target="_blank" title="LinkedIn">
+                        <a href="{{ linkedin_url | default('https://www.linkedin.com/in/sarkar-soham/') }}" target="_blank" title="LinkedIn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                                 <rect x="2" y="9" width="4" height="12"/>
@@ -622,3 +449,4 @@ git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span
     </script>
 </body>
 </html>
+

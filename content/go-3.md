@@ -1,6 +1,6 @@
 ---
 title: "Go vs JavaScript: Understanding the Concurrency Execution Models"
-template: dark-theme.html
+template: light-theme.html
 ---
 
 
