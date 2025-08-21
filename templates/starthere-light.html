@@ -25,8 +25,8 @@
             --text: #111827; /* gray-900 */
             --text-primary: #1f2937; /* gray-800 */
             --text-secondary: #4b5563; /* gray-600 */
-            --accent: #fb923c; /* orange-400 */
-            --accent-hover: #f59e0b; /* amber-500 */
+            --accent: #f97316; /* orange-500 */
+            --accent-hover: #ea580c; /* darker on hover */
             /* Terminal (light) palette */
             --terminal-bg: #ffffff;
             --terminal-border: #e5e7eb;
@@ -140,9 +140,9 @@
         }
 
         .nav-link {
-            color: #fb923c;
+            color: var(--accent);
             text-decoration: underline;
-            text-decoration-color: #fb923c;
+            text-decoration-color: var(--accent);
             font-weight: 500;
             text-decoration-thickness: 2px;
             text-underline-offset: 4px;
@@ -152,8 +152,8 @@
         }
 
         .nav-link:hover {
-            color: #fbbf24;
-            text-decoration-color: #fbbf24;
+            color: var(--accent-hover);
+            text-decoration-color: var(--accent-hover);
         }
 
         .nav-separator {
@@ -296,7 +296,8 @@
             margin-top: 1rem;
             margin-bottom: 1rem;
             text-align: center;
-            space-y: 0.25rem;
+            display: grid;
+            gap: 0.25rem;
         }
 
         .terminal-hint {
@@ -312,7 +313,7 @@
 
         /* Timeline Styling */
         .timeline-section {
-            margin: 4rem 0;
+            margin: 1.5rem 0;
             padding: 0 2rem;
         }
 
@@ -336,6 +337,8 @@
             font-weight: 600;
             font-style: italic;
         }
+
+        
 
         .timeline-item {
             margin: 2rem 0;
@@ -631,7 +634,7 @@
             <main class="timeline-section" id="timeline">
                 <h2 class="timeline-title">{{ timeline_title | default("What I've Been Up To") }}</h2>
                 <p class="timeline-subtitle">
-                    A quick rundown of the stuff I've done over the years - my <span class="proof-of-work">proof of work!</span>
+                    A quick rundown of the stuff I've done over the years written in <span class="proof-of-work">Reverse Chronological Order</span>!
                 </p>
 
                 <div class="timeline-items">

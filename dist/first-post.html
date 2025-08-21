@@ -411,15 +411,15 @@ If your focus is more on content rather than configuration, then toxic is for yo
 <li>pip (Python package installer)</li>
 </ul>
 <h2>Project Structure</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">your</span><span class="o">-</span><span class="n">site</span><span class="o">/</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">toxic</span><span class="p">.</span><span class="n">py</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">site</span><span class="w"> </span><span class="n">generator</span><span class="w"> </span><span class="n">script</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">content</span><span class="o">/</span><span class="w">             </span><span class="err">#</span><span class="w"> </span><span class="n">Your</span><span class="w"> </span><span class="n">markdown</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="k">go</span><span class="w"> </span><span class="n">here</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">templates</span><span class="o">/</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="n">HTML</span><span class="w"> </span><span class="n">templates</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">assets</span><span class="o">/</span><span class="w">             </span><span class="err">#</span><span class="w"> </span><span class="k">Static</span><span class="w"> </span><span class="n">assets</span><span class="w"> </span><span class="p">(</span><span class="n">CSS</span><span class="p">,</span><span class="w"> </span><span class="n">images</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="p">.)</span>
-<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">css</span><span class="o">/</span>
-<span class="err">│</span><span class="w">       </span><span class="err">└──</span><span class="w"> </span><span class="n">style</span><span class="p">.</span><span class="n">css</span>
-<span class="err">└──</span><span class="w"> </span><span class="n">dist</span><span class="o">/</span><span class="w">               </span><span class="err">#</span><span class="w"> </span><span class="n">Generated</span><span class="w"> </span><span class="n">site</span><span class="w"> </span><span class="p">(</span><span class="k">output</span><span class="w"> </span><span class="n">directory</span><span class="p">)</span>
-</code></pre></div>
+<pre class="codehilite"><code>your-site/
+├── toxic.py          # The static site generator script
+├── content/             # Your markdown files go here
+├── templates/           # HTML templates
+├── assets/             # Static assets (CSS, images, etc.)
+│   └── css/
+│       └── style.css
+└── dist/               # Generated site (output directory)
+</code></pre>
 
 <!-- ## Key Features
 
@@ -437,33 +437,33 @@ Here's what makes Toxic special:
 <ol>
 <li>Clone this repository or download the files:</li>
 </ol>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Sohoxic/toxic.git
-<span class="nb">cd</span><span class="w"> </span>toxic
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">git clone https://github.com/Sohoxic/toxic.git
+cd toxic
+</code></pre>
 
 <ol>
 <li>Install required dependencies:</li>
 </ol>
-<div class="codehilite"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">pip install -r requirements.txt
+</code></pre>
 
 <h2>Usage</h2>
 <h3>1. Create a New Post</h3>
 <p>Create a markdown file in the <code>content</code> directory with YAML frontmatter:</p>
-<div class="codehilite"><pre><span></span><code>---
+<pre class="codehilite"><code class="language-markdown">---
 title: My First Post
-<span class="gu">template: default.html</span>
-<span class="gu">---</span>
+template: default.html
+---
 
-<span class="gh"># Welcome to My Blog</span>
+# Welcome to My Blog
 
 This is my first blog post.
-</code></pre></div>
+</code></pre>
 
 <h3>2. Build the Site</h3>
 <p>Run the generator:</p>
-<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>toxic.py
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">python toxic.py
+</code></pre>
 
 <h3>3. View Your Site</h3>
 <p>Open <code>dist/your-post.html</code> in a web browser to see your generated page.</p>
@@ -521,13 +521,13 @@ This is my first blog post.
 <li>Create a new repository on GitHub</li>
 <li>Push your code:</li>
 </ol>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>init
-git<span class="w"> </span>add<span class="w"> </span>.
-git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Initial commit&quot;</span>
-git<span class="w"> </span>branch<span class="w"> </span>-M<span class="w"> </span>main
-git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>&lt;your-github-repo-url&gt;
-git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">git init
+git add .
+git commit -m &quot;Initial commit&quot;
+git branch -M main
+git remote add origin &lt;your-github-repo-url&gt;
+git push -u origin main
+</code></pre>
 
 <ol>
 <li>Enable GitHub Pages in repository settings</li>
@@ -537,10 +537,10 @@ git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span
 <ol>
 <li>Create a <code>netlify.toml</code>:</li>
 </ol>
-<div class="codehilite"><pre><span></span><code><span class="k">[build]</span>
-<span class="w">  </span><span class="n">publish</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;dist&quot;</span>
-<span class="w">  </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;python generator.py&quot;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-toml">[build]
+  publish = &quot;dist&quot;
+  command = &quot;python generator.py&quot;
+</code></pre>
 
 <ol>
 <li>Connect your repository to Netlify</li>
@@ -550,11 +550,11 @@ git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span
 <ol>
 <li>Create a <code>vercel.json</code>:</li>
 </ol>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;buildCommand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;python toxic.py&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;outputDirectory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dist&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-json">{
+  &quot;buildCommand&quot;: &quot;python toxic.py&quot;,
+  &quot;outputDirectory&quot;: &quot;dist&quot;
+}
+</code></pre>
 
 <ol>
 <li>Connect your repository to Vercel</li>
