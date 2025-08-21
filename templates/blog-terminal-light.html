@@ -22,8 +22,8 @@
             --bg-tertiary: #ffffff;
             --text-primary: #1f2937; /* gray-800 */
             --text-secondary: #4b5563; /* gray-600 */
-            --accent: #fb923c; /* orange-400 */
-            --accent-hover: #f59e0b; /* amber-500 */
+            --accent: #f97316; /* orange-500 (matches starthere-light) */
+            --accent-hover: #ea580c; /* darker on hover */
             --divider: #e5e7eb; /* gray-200 */
             --surface: #f1f5f9; /* slate-100 */
             --hover: #ffffff; /* hover surface */
@@ -241,6 +241,47 @@
             background-color: var(--surface);
         }
 
+        /* Article Groups (Dropdown) */
+        details.article-group {
+            border: 1px solid var(--border-color);
+            background: var(--surface);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            transition: all 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        details.article-group[open] {
+            background: var(--hover);
+            border-color: var(--accent);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        details.article-group summary {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            user-select: none;
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        /* Hide default marker (Safari/Chromium) */
+        details.article-group summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* Toggle right/down chevrons */
+        .chevron-right { display: inline-block; }
+        .chevron-down { display: none; }
+        details.article-group[open] .chevron-right { display: none; }
+        details.article-group[open] .chevron-down { display: inline-block; }
+
         /* Mobile Navigation */
         .mobile-nav-toggle {
             display: none;
@@ -258,6 +299,57 @@
         .mobile-nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
         .mobile-nav-toggle.active span:nth-child(2) { opacity: 0; }
         .mobile-nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+        /* Minimal section links (compact, not a second navbar) */
+        .sticky-subnav {
+            position: static;
+            background: transparent;
+            border-bottom: none;
+            box-shadow: none;
+            backdrop-filter: none;
+            margin: 0 0 0.75rem 0;
+        }
+        .subnav-inner {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.25rem 2rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            position: relative;
+            border-bottom: 1px solid var(--divider);
+        }
+        .subnav-inner::-webkit-scrollbar { display: none; }
+        .subnav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.4rem 0rem;
+            border: none;
+            transition: color 0.2s ease;
+            font-family: monospace;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+        .subnav-link .link-label { display: inline-block; }
+        .subnav-link .icon { width: 16px; height: 16px; color: var(--text-secondary); }
+        .subnav-link:hover { color: var(--accent-hover); }
+        .subnav-link.active { color: var(--accent); }
+        .subnav-link.active .icon { color: var(--accent); }
+        .subnav-underline {
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            height: 3px;
+            width: 0px;
+            background: var(--accent);
+            border-radius: 9999px;
+            transition: transform 200ms ease, width 200ms ease;
+        }
+        #quick-notes, #articles, #groups { scroll-margin-top: 20px; }
     </style>
 </head>
 <body class="min-h-screen transition-colors duration-300">
@@ -266,7 +358,7 @@
         <div class="content-root">
             <!-- Header -->
             <header class="border-b border-[var(--divider)] bg-[var(--bg-secondary)]" style="position: relative;">
-                <div class="container-900" style="padding: 1.5rem 2rem;">
+                <div class="container-900" style="padding: 1rem 2rem;">
                     <div class="flex items-center justify-between">
                         <!-- Desktop Content with Navigation -->
                         <div class="desktop-nav flex items-center justify-between w-full">
@@ -326,10 +418,84 @@
                 </div>
             </header>
 
-            <main class="container-900" style="padding: 2rem;">
+            <main class="container-900" style="padding: 1rem 2rem 2rem;">
+                <!-- Minimal section links under header -->
+                <nav class="sticky-subnav" aria-label="Section navigation">
+                    <div class="subnav-inner container-900" style="padding-left: 2rem; padding-right: 2rem;">
+                        <a href="#groups" class="subnav-link" data-subnav>
+                            <i data-lucide="folder-open" class="icon"></i>
+                            <span class="link-label">Groups</span>
+                        </a>
+                        <a href="#quick-notes" class="subnav-link" data-subnav>
+                            <i data-lucide="zap" class="icon"></i>
+                            <span class="link-label">Quick Notes</span>
+                        </a>
+                        <a href="#articles" class="subnav-link" data-subnav>
+                            <i data-lucide="newspaper" class="icon"></i>
+                            <span class="link-label">Articles</span>
+                        </a>
+                        <div class="subnav-underline" id="subnav-underline"></div>
+                    </div>
+                </nav>
+                {# Article Groups (Dropdowns) - moved to top #}
+                {% if article_groups %}
+                <section id="groups" class="mb-12">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-[var(--text-secondary)] font-mono text-sm">$</span>
+                        <i data-lucide="folder-open" class="w-6 h-6 text-[var(--accent)]"></i>
+                        <h2 class="text-xl font-bold text-[var(--text-primary)] font-mono">groups/</h2>
+                        <span class="text-[var(--text-secondary)] text-sm font-mono">// grouped articles</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        {% for group in article_groups %}
+                        <details class="article-group">
+                            <summary class="font-mono text-sm flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="chevron-right" class="chevron-right w-4 h-4 text-[var(--text-secondary)]"></i>
+                                    <i data-lucide="chevron-down" class="chevron-down w-4 h-4 text-[var(--text-secondary)]"></i>
+                                    <span class="text-[var(--text-primary)] font-bold">{{ group.title }}</span>
+                                    {% if group.description %}
+                                        <span class="text-[var(--text-secondary)]">// {{ group.description }}</span>
+                                    {% endif %}
+                                </div>
+                            </summary>
+
+                            <div class="mt-2 space-y-1">
+                                {% for item in group.posts %}
+                                <a href="{{ item.path }}" class="block p-3 bg-[var(--surface)] hover:bg-[var(--hover)] rounded-lg transition-all duration-200 group cursor-pointer border border-[var(--border-color)] hover:border-[var(--accent)]">
+                                    <div class="flex items-center gap-2 font-mono text-sm">
+                                        <span class="text-[var(--text-secondary)]">></span>
+                                        <span class="text-[var(--accent)] font-bold">cat</span>
+                                        <span class="text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors flex-1">
+                                            {{ item.title | lower }}.md
+                                        </span>
+                                        <div class="flex items-center gap-2 text-[var(--text-secondary)] text-xs">
+                                            {% if item.date %}
+                                            <span class="flex items-center gap-1">
+                                                <i data-lucide="calendar" class="w-3 h-3"></i>
+                                                {{ item.date }}
+                                            </span>
+                                            {% endif %}
+                                            {% if item.reading_time %}
+                                            <span class="flex items-center gap-1">
+                                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                                {{ item.reading_time }}
+                                            </span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </details>
+                        {% endfor %}
+                    </div>
+                </section>
+                {% endif %}
                 <!-- Quick Notes Section -->
                 {% if quick_notes %}
-                <section class="mb-12">
+                <section id="quick-notes" class="mb-12">
                     <div class="flex items-center gap-3 mb-6">
                         <span class="text-[var(--text-secondary)] font-mono text-sm">$</span>
                         <i data-lucide="zap" class="w-6 h-6 text-[var(--accent)]"></i>
@@ -365,7 +531,7 @@
 
                 <!-- Main Blog Posts Section -->
                 {% if articles %}
-                <section>
+                <section id="articles">
                     <div class="flex items-center gap-3 mb-6">
                         <span class="text-[var(--text-secondary)] font-mono text-sm">$</span>
                         <i data-lucide="newspaper" class="w-6 h-6 text-[var(--accent)]"></i>
@@ -397,6 +563,8 @@
                     </div>
                 </section>
                 {% endif %}
+
+                
 
                 <!-- Content Section (if this is a single page) -->
                 {% if content %}
@@ -437,6 +605,20 @@
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
+        // Recalculate underline after icons/fonts/render settle so width matches final layout
+        const underlineReady = () => requestAnimationFrame(() => updateUnderline());
+        window.addEventListener('load', underlineReady);
+        setTimeout(underlineReady, 0);
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(underlineReady);
+        }
+        // Observe layout changes within subnav to keep underline width in sync
+        const subnavContainer = document.querySelector('.subnav-inner');
+        if (window.ResizeObserver && subnavContainer) {
+            const ro = new ResizeObserver(() => updateUnderline());
+            ro.observe(subnavContainer);
+            document.querySelectorAll('[data-subnav]').forEach(el => ro.observe(el));
+        }
 
         // Mobile navigation toggle
         const mobileNavToggle = document.getElementById('mobile-nav-toggle');
@@ -446,6 +628,106 @@
             mobileNavMenu.classList.toggle('active');
             mobileNavToggle.classList.toggle('active');
         });
+
+        // Smooth hash scrolling + URL update for subnav
+        const hashToId = {
+            '#groups': '#groups',
+            '#quick-notes': '#quick-notes',
+            '#articles': '#articles'
+        };
+        function scrollToHash(hash) {
+            const targetSelector = hashToId[hash] || hash;
+            const el = document.querySelector(targetSelector);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        const updateUnderline = () => {
+            const activeLink = document.querySelector('.subnav-link.active') || document.querySelector('[data-subnav]');
+            const underline = document.getElementById('subnav-underline');
+            if (!activeLink || !underline) return;
+            const label = activeLink.querySelector('.link-label') || activeLink;
+            const rect = label.getBoundingClientRect();
+            const containerRect = activeLink.parentElement.getBoundingClientRect();
+            const left = rect.left - containerRect.left;
+            underline.style.width = rect.width + 'px';
+            underline.style.transform = `translateX(${left}px)`;
+        };
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', (e) => {
+                const href = a.getAttribute('href');
+                if (!href) return;
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    history.pushState(null, '', href);
+                    scrollToHash(href);
+                    document.querySelectorAll('[data-subnav]').forEach(l => l.classList.toggle('active', l.getAttribute('href') === href));
+                    showOnlySection(href);
+                    updateUnderline();
+                }
+            });
+        });
+        // Handle initial hash and changes
+        if (window.location.hash) {
+            requestAnimationFrame(() => scrollToHash(window.location.hash));
+        }
+        window.addEventListener('hashchange', () => { 
+            scrollToHash(window.location.hash);
+            document.querySelectorAll('[data-subnav]').forEach(l => l.classList.toggle('active', l.getAttribute('href') === window.location.hash));
+            showOnlySection(window.location.hash);
+            updateUnderline();
+        });
+
+        // Active link highlighting based on scroll position (top-most visible section)
+        const subnavLinks = Array.from(document.querySelectorAll('[data-subnav]'));
+        const sectionIds = ['#groups', '#quick-notes', '#articles'];
+        const sections = sectionIds.map(id => document.querySelector(id)).filter(Boolean);
+
+        function showOnlySection(hash) {
+            const requestedId = (hash && hash.startsWith('#')) ? hash.slice(1) : (hash || 'groups');
+            const available = sections.map(s => s.id);
+            const targetId = available.includes(requestedId) ? requestedId : (available[0] || '');
+            sections.forEach(sec => {
+                if (!sec) return;
+                sec.style.display = (sec.id === targetId) ? '' : 'none';
+            });
+        }
+
+        function setActiveLinkById(id) {
+            subnavLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === id));
+            updateUnderline();
+        }
+
+        function isVisible(el) {
+            return !!(el && el.offsetParent !== null);
+        }
+
+        function updateActiveByScroll() {
+            const offset = 80; // approximate header/subnav height
+            const y = window.scrollY + offset;
+            let activeId = sectionIds[0];
+            sections.forEach(sec => {
+                if (!isVisible(sec)) return;
+                const top = sec.getBoundingClientRect().top + window.scrollY;
+                if (top <= y) {
+                    activeId = '#' + sec.id;
+                }
+            });
+            setActiveLinkById(activeId);
+        }
+
+        // Initialize active state on load (prefer hash, else groups)
+        requestAnimationFrame(() => {
+            const current = window.location.hash || '#groups';
+            setActiveLinkById(current);
+            showOnlySection(current);
+            // Also sync to scroll position in case current view differs
+            updateActiveByScroll();
+        });
+
+        window.addEventListener('resize', () => { updateUnderline(); updateActiveByScroll(); });
+        window.addEventListener('scroll', updateActiveByScroll, { passive: true });
     </script>
 </body>
 </html>

@@ -30,4 +30,25 @@ articles:
     date: "Jul 6, 2025"
     reading_time: "16 min read"
 
+# Grouped dropdowns for the blog listing page
+article_groups:
+  - title: "systems"
+    description: "concurrency, os, distributed systems"
+    posts:
+      - title: "Introducing Toxic - A simple yet fast static site generator"
+        path: "/articles/toxic-generator.html"
+        date: "Jul 6, 2025"
+        reading_time: "16 min read"
+  - title: "go-notes"
+    description: "short go writeups"
+    posts:
+      - title: "Understanding Type Inference in Go"
+        path: "/quick-notes/go-type-inference.html"
+        date: "Jul 11, 2025"
+        reading_time: "2 min read"
+      - title: "Go vs JavaScript: Understanding the Concurrency Execution Models"
+        path: "/quick-notes/go-3.html"
+        date: "Jul 12, 2025"
+        reading_time: "5 min read"
+
 ---
