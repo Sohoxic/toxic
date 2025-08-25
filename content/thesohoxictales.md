@@ -32,8 +32,10 @@ articles:
 
 # Grouped dropdowns for the blog listing page
 article_groups:
+  - title: "machine learning from scratch"
+    description: "perceptron to neural networks, paper implementations and many more"
   - title: "systems"
-    description: "concurrency, os, distributed systems"
+    description: "computer networks, operating systems, databases, distributed systems and anything systems"
     posts:
       - title: "Introducing Toxic - A simple yet fast static site generator"
         path: "/articles/toxic-generator.html"

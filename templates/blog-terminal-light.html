@@ -451,13 +451,11 @@
                         {% for group in article_groups %}
                         <details class="article-group">
                             <summary class="font-mono text-sm flex items-center justify-between">
-                                <div class="flex items-center gap-2">
+                                <div class="flex items-center gap-2 flex-nowrap min-w-0">
                                     <i data-lucide="chevron-right" class="chevron-right w-4 h-4 text-[var(--text-secondary)]"></i>
                                     <i data-lucide="chevron-down" class="chevron-down w-4 h-4 text-[var(--text-secondary)]"></i>
                                     <span class="text-[var(--text-primary)] font-bold">{{ group.title }}</span>
-                                    {% if group.description %}
-                                        <span class="text-[var(--text-secondary)]">// {{ group.description }}</span>
-                                    {% endif %}
+                                    {% if group.description %}<span class="text-[var(--text-secondary)]">// {{ group.description }}</span>{% endif %}
                                 </div>
                             </summary>
 
